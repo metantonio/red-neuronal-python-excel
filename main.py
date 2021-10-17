@@ -69,7 +69,7 @@ elif (user==2):
         
 elif (user==3):
     data, weights, variables_columns = excel_data()
-    option_weight = int(input("\n Start Training from scratch: Press 1 \n Continue Training from previous weights: Press 2 \n"))
+    option_weight = int(input("\n Start Training from scratch: Press 1 \n Continue Training from previous saved weights?: Press 2 \n"))
     if (option_weight==2):
         df_excel = pd.read_excel('results.xlsx')
         weights = df_excel['Weights']
@@ -80,9 +80,12 @@ elif (user==3):
         print("\n initial random weights \n", weights)
         previous_epochs=0
     epochs=int(input("\n Number of Epochs for training \n"))
+    if(epochs==0):
+        epochs=1
+        print("\n Epochs for training cannot be equal zero, it will be set as one (1) \n")
     while (user==3):
         weights, average_loss, feature, data, target, epoch_loss, loss, prediction, individual_loss, w_sum  = train_model(data, weights, bias, l_rate, epochs)
-        user = int(input("\n Cotinuing training?: Press 3 \n Stop Training and Generate PDF: Press 1 \n"))
+        user = int(input("\n Cotinuing training?: Press 3 \n Stop Training: Press 1 \n"))
         previous_epochs=previous_epochs+epochs
         save_csv(data, weights, bias, l_rate, previous_epochs, epoch_loss, loss, average_loss)
 else:
@@ -91,22 +94,23 @@ else:
 df = pd.DataFrame(epoch_loss)
 df_plot = df.plot(kind="line", grid=True).get_figure()
 df_plot.savefig("Training_loss.pdf")
-print("\n ver gráfica en pdf del error en: Training_loss.pdf \n")
+print("\n Training_loss.pdf created \n")
 
-user = int(input("\n Evaluate new input: Press 1 \n Exit: Press 0 \n"))
+user = int(input("\n Evaluate new input?: Press 1 \n Exit: Press 0 \n"))
 if (user==1):
     example=[]
     df_excel = pd.read_excel('data.xls', sheet_name='evaluation')
     df_excel_columnas = df_excel.columns
-    print("\n Head: \n", df_excel_columnas)
+    #print("\n Head: \n", df_excel_columnas)
     #example.append(df_excel.head(1))
+    print(df_excel)
     intermedia=[]
     for j in range(variables_columns):
         intermedia.append(df_excel.iloc[0,j+1])
     example.append(intermedia)
     print(example)
     result = evaluation_neuronal(example, bias, weights)
-    print("\n If new data is: ",example)
-    print("\n Output of neuronal network should be: ", result)
+    print("\n If new data for evaluation with Neuronal Network is: ",example)
+    print("\n Output of neuronal network will be: ", result)
     
 
