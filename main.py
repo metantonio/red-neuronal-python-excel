@@ -75,6 +75,7 @@ elif (user==3):
         weights = df_excel['Weights']
         print("\n initial weights \n", weights)
         previous_epochs=df_excel['Epoch'][0]
+        average_loss=df_excel['Average_loss'][0]
     else:
         print("\n initial random weights \n", weights)
         previous_epochs=0
@@ -86,7 +87,7 @@ elif (user==3):
         save_csv(data, weights, bias, l_rate, previous_epochs, epoch_loss, loss, average_loss)
 else:
     print("\n wrong option")
-#Plot the average loss usin pandas and save plot as PDF file
+#Plot the average loss using pandas and save plot as PDF file
 df = pd.DataFrame(epoch_loss)
 df_plot = df.plot(kind="line", grid=True).get_figure()
 df_plot.savefig("Training_loss.pdf")

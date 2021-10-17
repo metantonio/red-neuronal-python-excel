@@ -94,6 +94,7 @@ def save_csv(data, weights, bias, l_rate, epochs, epoch_loss, loss, average_loss
     #df["epochs"]=epochs
     #df["epoch_loss"]=epoch_loss
     print(df)
+    df["Average_loss"]=average_loss
     #df.to_csv('results.csv', index=False, decimal=",", columns=["Weights", "Epoch"])
     with pd.ExcelWriter('results.xlsx') as writer:
         return df.to_excel(writer, sheet_name="results")
