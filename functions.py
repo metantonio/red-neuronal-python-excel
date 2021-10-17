@@ -34,7 +34,7 @@ def excel_data():
     print("Excel Heads: \n", df_excel_columnas)
     df_dataset_lenght = df_excel.iloc[0,0]
     print("\n Dataset lenght: ",df_dataset_lenght)
-    variables = int(input("\n How many variables for inputs exist? \n"))
+    variables = int(input("\n How many variables for inputs exist? (x1, x2, ...)\n"))
     features=[]
     columns_input=[]
     for i in range(df_dataset_lenght):
@@ -45,7 +45,7 @@ def excel_data():
             columns_input.append("x"+str(j+1))
         features.append(intermedia)
     print("\n inputs: \n", columns_input,features)
-    variables_targets = int(input("\n How many variables for outputs exist? \n"))
+    variables_targets = int(input("\n How many variables for outputs exist? (o1, o2, ...)\n"))
     targets=[]
     for i in range(df_dataset_lenght):
         intermedia=[]

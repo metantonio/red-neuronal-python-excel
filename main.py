@@ -74,13 +74,16 @@ elif (user==3):
         df_excel = pd.read_excel('results.xlsx')
         weights = df_excel['Weights']
         print("\n initial weights \n", weights)
+        previous_epochs=df_excel['Epoch'][0]
     else:
         print("\n initial random weights \n", weights)
-    while user==3:
-        epochs=1000
+        previous_epochs=0
+    epochs=int(input("\n Number of Epochs for training \n"))
+    while (user==3):
         weights, average_loss, feature, data, target, epoch_loss, loss, prediction, individual_loss, w_sum  = train_model(data, weights, bias, l_rate, epochs)
         user = int(input("\n Cotinuing training?: Press 3 \n Stop Training and Generate PDF: Press 1 \n"))
-        save_csv(data, weights, bias, l_rate, epochs, epoch_loss, loss, average_loss)
+        previous_epochs=previous_epochs+epochs
+        save_csv(data, weights, bias, l_rate, previous_epochs, epoch_loss, loss, average_loss)
 else:
     print("\n wrong option")
 #Plot the average loss usin pandas and save plot as PDF file
