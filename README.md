@@ -1,4 +1,6 @@
-Este script en python se realizó para demostrar cómo una red neuronal simple se puede programar en python
+#Entrenando Red Neuronal con Python y datos desde Excel
+
+Este script en python se realizó para demostrar cómo una red neuronal simple se puede programar en python, extrayendo datos desde Excel. La función de activación de la red neuronal es del tipo Sigmoide, se podría programar de otros tipos.
 
 Está hecho pensando en usuarios nuevos.
 
@@ -29,4 +31,19 @@ Para ejecutar el script, basta con darle doble click al archivo: `Run main.bat`.
 
 ```sh
 python3 main.py
+```
+
+# En caso de usar entornos virtuales
+
+#### Instalar las dependencias necesarias de python en un ambiente virtual
+```
+$ pipenv install
+```
+#### Ejecutar el ambiente virtual
+```
+$ pipenv shell
+```
+#### Ejecutar la red neuronal
+```
+$ pipenv run main.py
 ```
