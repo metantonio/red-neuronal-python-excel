@@ -57,7 +57,7 @@ def excel_data():
     data["targets"] = targets
     weights = rg.random((1, variables))[0]
     print("\n initial data: \n", data)
-    print("\n initial weights \n", weights)
+    #print("\n initial weights \n", weights)
     return data, weights
 
 #basically the sum of a line ecuation, where line is y = mx + b

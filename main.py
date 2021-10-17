@@ -69,6 +69,13 @@ elif (user==2):
         
 elif (user==3):
     data, weights = excel_data()
+    option_weight = int(input("\n Start Training from scratch: Press 1 \n Continue Training from previous weights: Press 2 \n"))
+    if (option_weight==2):
+        df_excel = pd.read_excel('results.xlsx')
+        weights = df_excel['Weights']
+        print("\n initial weights \n", weights)
+    else:
+        print("\n initial random weights \n", weights)
     while user==3:
         epochs=1000
         weights, average_loss, feature, data, target, epoch_loss, loss, prediction, individual_loss, w_sum  = train_model(data, weights, bias, l_rate, epochs)
