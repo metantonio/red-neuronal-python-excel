@@ -87,5 +87,16 @@ def evaluation_neuronal(example, bias, weights):
     ##print("\nresult sum_weights: ", sum_weights)
     return sigmoid(sum_weights)
     
+def save_csv(data, weights, bias, l_rate, epochs, epoch_loss, loss, average_loss):
+    print("\n Weights: \n",weights)
+    df= pd.DataFrame()
+    #df["Data"] = data
+    df["Weights"]=weights
+    #df["epochs"]=epochs
+    #df["epoch_loss"]=epoch_loss
+    return df.to_csv('results.csv', index=False, decimal=",")
+    
+    
+    
 #HERE FINISH DEFINITIONS OF FUNCTIONS
     

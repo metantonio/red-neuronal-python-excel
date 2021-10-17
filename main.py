@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 #import of functions.py
-from functions import generate_data, example_data, get_weighted_sum, sigmoid, cross_entropy, update_weights, update_bias, evaluation_neuronal, excel_data
+from functions import generate_data, example_data, get_weighted_sum, sigmoid, cross_entropy, update_weights, update_bias, evaluation_neuronal, excel_data, save_csv
 
 #definition of bias, learning rate, and epochs to run
 bias = 0.5
@@ -73,6 +73,7 @@ elif (user==3):
         epochs=1000
         weights, average_loss, feature, data, target, epoch_loss, loss, prediction, individual_loss, w_sum  = train_model(data, weights, bias, l_rate, epochs)
         user = int(input("\n Cotinuing training?: Press 3 \n Stop Training and Generate PDF: Press 1 \n"))
+        save_csv(data, weights, bias, l_rate, epochs, epoch_loss, loss, average_loss)
 else:
     print("\n wrong option")
 #Plot the average loss usin pandas and save plot as PDF file
