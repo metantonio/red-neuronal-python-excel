@@ -19,6 +19,7 @@ python3 -m pip install --upgrade pip
 pip3 install matplotlib
 python -m pip install --upgrade pip
 python3 -m pip install matplotlib --user
+python3 -m pip install xlrd --user
 ```
 
 ## Cómo ejecuto el script de Python?
