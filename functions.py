@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 
-
 #random generator
 rg = np.random.default_rng()
 
@@ -89,12 +88,16 @@ def evaluation_neuronal(example, bias, weights):
     
 def save_csv(data, weights, bias, l_rate, epochs, epoch_loss, loss, average_loss):
     print("\n Weights: \n",weights)
-    df= pd.DataFrame()
+    df= pd.DataFrame({'Weights':weights, 'Epoch':epochs})
     #df["Data"] = data
-    df["Weights"]=weights
+    #df["Weights"]=weights
     #df["epochs"]=epochs
     #df["epoch_loss"]=epoch_loss
-    return df.to_csv('results.csv', index=False, decimal=",")
+    print(df)
+    #df.to_csv('results.csv', index=False, decimal=",", columns=["Weights", "Epoch"])
+    with pd.ExcelWriter('results.xlsx') as writer:
+        return df.to_excel(writer, sheet_name="results")
+    #return df.to_csv('results.csv', index=False, decimal=",", columns=["Weights", "Epoch"])
     
     
     
