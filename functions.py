@@ -29,7 +29,7 @@ def example_data():
     return data, weights
 
 def excel_data():
-    df_excel = pd.read_excel('data.xls')
+    df_excel = pd.read_excel('data.xls', sheet_name="input")
     df_excel_columnas = df_excel.columns
     print("Excel Heads: \n", df_excel_columnas)
     df_dataset_lenght = df_excel.iloc[0,0]
@@ -58,7 +58,7 @@ def excel_data():
     weights = rg.random((1, variables))[0]
     print("\n initial data: \n", data)
     #print("\n initial weights \n", weights)
-    return data, weights
+    return data, weights, variables
 
 #basically the sum of a line ecuation, where line is y = mx + b
 def get_weighted_sum(feature, weights, bias):
@@ -96,7 +96,7 @@ def save_csv(data, weights, bias, l_rate, epochs, epoch_loss, loss, average_loss
     print(df)
     df["Average_loss"]=average_loss
     #df.to_csv('results.csv', index=False, decimal=",", columns=["Weights", "Epoch"])
-    with pd.ExcelWriter('results.xlsx') as writer:
+    with pd.ExcelWriter('results.xlsx', mode='w') as writer:
         return df.to_excel(writer, sheet_name="results")
     #return df.to_csv('results.csv', index=False, decimal=",", columns=["Weights", "Epoch"])
     

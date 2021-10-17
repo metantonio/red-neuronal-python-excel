@@ -68,7 +68,7 @@ elif (user==2):
         user = int(input("\n Cotinuing training?: Press 2 \n Stop Training and Generate PDF: Press 1 \n"))
         
 elif (user==3):
-    data, weights = excel_data()
+    data, weights, variables_columns = excel_data()
     option_weight = int(input("\n Start Training from scratch: Press 1 \n Continue Training from previous weights: Press 2 \n"))
     if (option_weight==2):
         df_excel = pd.read_excel('results.xlsx')
@@ -91,5 +91,22 @@ else:
 df = pd.DataFrame(epoch_loss)
 df_plot = df.plot(kind="line", grid=True).get_figure()
 df_plot.savefig("Training_loss.pdf")
-print("\n ver gráfica en pdf del error en: Training_loss.pdf")
+print("\n ver gráfica en pdf del error en: Training_loss.pdf \n")
+
+user = int(input("\n Evaluate new input: Press 1 \n Exit: Press 0 \n"))
+if (user==1):
+    example=[]
+    df_excel = pd.read_excel('data.xls', sheet_name='evaluation')
+    df_excel_columnas = df_excel.columns
+    print("\n Head: \n", df_excel_columnas)
+    #example.append(df_excel.head(1))
+    intermedia=[]
+    for j in range(variables_columns):
+        intermedia.append(df_excel.iloc[0,j+1])
+    example.append(intermedia)
+    print(example)
+    result = evaluation_neuronal(example, bias, weights)
+    print("\n If new data is: ",example)
+    print("\n Output of neuronal network should be: ", result)
+    
 
